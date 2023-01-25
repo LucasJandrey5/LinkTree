@@ -21,7 +21,14 @@ const Routering = () => {
         <Route path="Login" element={<Login />} />
         <Route path="Register" element={<Register />} />
         <Route path="recover" element={<PasswordRecover />} />
-        <Route path="dashboard" element={<DashboardHeader />}>
+        <Route
+          path="dashboard"
+          element={
+            <ProtectedRoutes>
+              <DashboardHeader />
+            </ProtectedRoutes>
+          }
+        >
           <Route path="" element={<DashboardHome />} />
           <Route path="profile" element={<Profile />} />
           <Route path="pages" element={<ShowPages />} />

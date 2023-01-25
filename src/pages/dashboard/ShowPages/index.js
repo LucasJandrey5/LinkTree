@@ -21,7 +21,7 @@ const ShowPages = () => {
   return (
     <ShowPagesSection>
       <h1>Show pages</h1>
-      {pagesData.map((item, i) => (
+      {pagesData?.map((item, i) => (
         <PageButton
           key={item.id}
           id={item.id}

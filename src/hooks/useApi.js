@@ -24,6 +24,31 @@ export const useApi = () => ({
 
     return res.data;
   },
+  GetPageByPageId: async (data) => {
+    const res = await api.post("/getPage", data);
+
+    return res.data;
+  },
+  CreateLinkByPage: async (data) => {
+    const res = await api.post("/createLink", data);
+
+    return res.data;
+  },
+  DeleteLinkById: async (data) => {
+    const res = await api.post("/deleteLink", data);
+
+    return res.data;
+  },
+  ChangeTextsLink: async (data) => {
+    const res = await api.post("./changeTextsLink", data);
+
+    return res.data;
+  },
+  ChangeOrderLink: async (data) => {
+    const res = await api.post("./changeOrderLink", data);
+
+    return res.data;
+  },
   GetLinksByPage: async (data) => {
     const res = await api.post("/getLinks", data);
 

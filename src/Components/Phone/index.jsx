@@ -4,13 +4,29 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import BlockItem from "../BlockItem";
 import { PhoneComponent } from "./style";
 
-const Phone = ({ links }) => {
+import ProfileImg from "../../images/ProfileImg.png";
+import { ReactComponent as PlusIcon } from "../../images/plus.svg";
+
+const Phone = ({
+  pageData,
+  links,
+  handleCreateNewLink,
+  handleDeleteLink,
+  handleOrderUpdateLink,
+  handleTextUpdate,
+  isLoading,
+}) => {
   return (
     <PhoneComponent>
       <div className="page-background">
+        <div className="page-presentation">
+          <img src={ProfileImg} alt="Profile Photo" />
+          <h1>{pageData.title}</h1>
+        </div>
+
         <DragDropContext
           onDragEnd={(...props) => {
-            console.log(props);
+            handleOrderUpdateLink(props);
           }}
         >
           <div className="block-list">
@@ -25,13 +41,16 @@ const Phone = ({ links }) => {
                     <Draggable
                       key={item.id}
                       draggableId={"draggable-" + item.id}
-                      index={item.id}
+                      index={id}
                     >
                       {(provided, snapshot) => (
                         <BlockItem
+                          id={item.id}
                           title={item.title}
                           link={item.link}
                           provided={provided}
+                          handleDeleteLink={() => handleDeleteLink(item.id)}
+                          handleTextUpdate={handleTextUpdate}
                         />
                       )}
                     </Draggable>
@@ -43,6 +62,10 @@ const Phone = ({ links }) => {
             </Droppable>
           </div>
         </DragDropContext>
+
+        <button className="new-link-box" onClick={() => handleCreateNewLink()}>
+          <PlusIcon className="plus-icon" />
+        </button>
       </div>
     </PhoneComponent>
   );

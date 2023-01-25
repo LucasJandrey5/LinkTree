@@ -20,8 +20,8 @@ const DashboardHeader = () => {
               </Link>
             </li>
             <li>
-              <Link to="/dashboard/trees" href="">
-                Trees
+              <Link to="/dashboard/pages" href="">
+                Pages
               </Link>
             </li>
           </ul>

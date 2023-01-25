@@ -5,6 +5,7 @@ export const TopHeader = styled.header`
   width: 100vw;
   display: flex;
   justify-content: space-between;
+  background-color: white;
   padding: 0.5rem 3rem;
   align-items: center;
   box-shadow: 0px 13px 20px -4px rgba(207, 207, 207, 1);

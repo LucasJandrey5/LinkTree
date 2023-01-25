@@ -55,16 +55,19 @@ export const BlockItemStyle = styled.div`
 
   .div3 {
     width: 2.5rem;
+
     display: flex;
     justify-content: flex-start;
-
     align-items: center;
 
     button {
+      height: 2.5rem;
+      background: none;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: none;
+
+      cursor: pointer;
 
       .trashIcon {
         width: 1.6rem;

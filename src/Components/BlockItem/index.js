@@ -1,13 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { BlockItemStyle } from "./style";
 import { ReactComponent as DragIcon } from "../../images/drag.svg";
 import { ReactComponent as PencilIcon } from "../../images/pencil.svg";
 import { ReactComponent as TrashIcon } from "../../images/trash.svg";
 
-const BlockItem = ({ title, link, provided }) => {
+const BlockItem = ({
+  id,
+  title,
+  link,
+  provided,
+  handleDeleteLink,
+  handleTextUpdate,
+}) => {
+  const [initialized, setInitialized] = useState(false);
   const [titleText, setTitleText] = useState(title);
   const [linkText, setLinkText] = useState(link);
+
+  useEffect(() => {
+    if (!initialized) {
+      setInitialized(true);
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      handleTextUpdate(id, titleText, linkText);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [titleText, linkText]);
 
   return (
     <BlockItemStyle ref={provided.innerRef} {...provided.draggableProps}>
@@ -33,8 +56,8 @@ const BlockItem = ({ title, link, provided }) => {
           />
         </div>
       </div>
-      <div className="div3 middleTexts">
-        <button>
+      <div className="div3">
+        <button onClick={handleDeleteLink}>
           <TrashIcon className="trashIcon" />
         </button>
       </div>
